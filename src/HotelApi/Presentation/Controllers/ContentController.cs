@@ -10,10 +10,6 @@ namespace HotelApi.Controllers
     [Route("api/[controller]")]
     public class ContentController : ControllerBase
     {
-        [HttpGet("{id}")]
-        public IActionResult Get(int id)
-        {
-            return Ok();
-        }
+        
     }
 }
