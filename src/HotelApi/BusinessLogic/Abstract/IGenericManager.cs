@@ -3,10 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HotelApi.BusinessLogic
+namespace HotelApi.BusinessLogic.Abstract
 {
-    public interface IGenericService
+    public interface IGenericManager<T> where T : class
     {
-        
+        void TInsert(T t);
+        void TDelete(T t);
+        void TUpdate(T t);
+        List<T> TGetList();
+        T TGetById(int id);
     }
 }

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HotelApi.Shared.Entities
+namespace HotelApi.Shared.DtoEntities
 {
-    public class NewsPost
+    public class NewsPostDto
     {
+        public int NewsPostId { get; set; }
         public string? Title { get; set; }
         public string? Category { get; set; }
         public string? CoverImage { get; set; }

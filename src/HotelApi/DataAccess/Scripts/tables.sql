@@ -1,27 +1,27 @@
-CREATE TABLE Introduction (
-    IntroductionId INT PRIMARY KEY,
+CREATE TABLE Introductions (
+    IntroductionId INT PRIMARY KEY IDENTITY(1,1),
     Title VARCHAR(255),
     Description TEXT,
     DiscoverNowLink VARCHAR(255)
 );
 
-CREATE TABLE AboutUs (
-    AboutUsId INT PRIMARY KEY,
+CREATE TABLE AboutUses (
+    AboutUsId INT PRIMARY KEY IDENTITY(1,1),
     Title VARCHAR(255),
     Description TEXT,
     ReadNowLink VARCHAR(255),
     CoverImage VARCHAR(255)
 );
 
-CREATE TABLE Service (
-    ServiceId INT PRIMARY KEY,
+CREATE TABLE Services (
+    ServiceId INT PRIMARY KEY IDENTITY(1,1),
     Icon VARCHAR(100),
     Title VARCHAR(255),
     Description TEXT
 );
 
-CREATE TABLE Room (
-    RoomId INT PRIMARY KEY,
+CREATE TABLE Rooms (
+    RoomId INT PRIMARY KEY IDENTITY(1,1),
     Price INT,
     RoomName VARCHAR(100),
     PriceCurrency VARCHAR(10),
@@ -33,15 +33,15 @@ CREATE TABLE Room (
     MoreDetailsLink VARCHAR(255)
 );
 
-CREATE TABLE TestimonialReview (
-    ReviewId INT PRIMARY KEY,
+CREATE TABLE TestimonialReviews (
+    ReviewId INT PRIMARY KEY IDENTITY(1,1),
     Review TEXT,
     Author VARCHAR(100),
     Rate SMALLINT
 );
 
-CREATE TABLE NewsPost (
-    PostId INT PRIMARY KEY,
+CREATE TABLE NewsPosts (
+    PostId INT PRIMARY KEY IDENTITY(1,1),
     Title VARCHAR(255),
     Category VARCHAR(100),
     CoverImage VARCHAR(255),
