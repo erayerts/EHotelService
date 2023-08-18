@@ -7,6 +7,7 @@ namespace HotelApi.Shared.Entities
 {
     public class NewsPost
     {
+        public int NewsPostId { get; set; }
         public string? Title { get; set; }
         public string? Category { get; set; }
         public string? CoverImage { get; set; }

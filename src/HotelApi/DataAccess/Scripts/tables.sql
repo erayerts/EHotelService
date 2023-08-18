@@ -34,17 +34,17 @@ CREATE TABLE Rooms (
 );
 
 CREATE TABLE TestimonialReviews (
-    ReviewId INT PRIMARY KEY IDENTITY(1,1),
+    TestimonialReviewId INT PRIMARY KEY IDENTITY(1,1),
     Review TEXT,
     Author VARCHAR(100),
     Rate SMALLINT
 );
 
 CREATE TABLE NewsPosts (
-    PostId INT PRIMARY KEY IDENTITY(1,1),
+    NewsPostId INT PRIMARY KEY IDENTITY(1,1),
     Title VARCHAR(255),
     Category VARCHAR(100),
     CoverImage VARCHAR(255),
     PostLink VARCHAR(255),
-    PostDate DATE
+    PostDate INT
 );

@@ -7,6 +7,7 @@ namespace HotelApi.Shared.Entities
 {
     public class Room
     {
+        public int RoomId { get; set; }
         public int Price { get; set; }
         public string? RoomName { get; set; }
         public string? PriceCurrency { get; set; }

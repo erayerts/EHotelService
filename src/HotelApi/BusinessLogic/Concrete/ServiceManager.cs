@@ -23,12 +23,12 @@ namespace HotelApi.BusinessLogic.Concrete
 
         public Service TGetById(int id)
         {
-            throw new NotImplementedException();
+            return _serviceRepository.GetById(id);
         }
 
         public List<Service> TGetList()
         {
-            throw new NotImplementedException();
+            return _serviceRepository.GetList();
         }
 
         public void TInsert(Service t)

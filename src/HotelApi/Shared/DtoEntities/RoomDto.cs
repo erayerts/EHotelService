@@ -7,7 +7,6 @@ namespace HotelApi.Shared.DtoEntities
 {
     public class RoomDto
     {
-        public int RoomId { get; set; }
         public int Price { get; set; }
         public string? RoomName { get; set; }
         public string? PriceCurrency { get; set; }

@@ -23,12 +23,12 @@ namespace HotelApi.BusinessLogic.Concrete
 
         public NewsPost TGetById(int id)
         {
-            throw new NotImplementedException();
+            return _newsPostRepository.GetById(id);
         }
 
         public List<NewsPost> TGetList()
         {
-            throw new NotImplementedException();
+            return _newsPostRepository.GetList();
         }
 
         public void TInsert(NewsPost t)

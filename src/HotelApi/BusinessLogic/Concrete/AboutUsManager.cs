@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using HotelApi.BusinessLogic.Abstract;
 using HotelApi.DataAccess.Repositories;
+using HotelApi.Shared.DtoEntities;
 using HotelApi.Shared.Entities;
 
 namespace HotelApi.BusinessLogic.Concrete
@@ -23,12 +24,12 @@ namespace HotelApi.BusinessLogic.Concrete
 
         public AboutUs TGetById(int id)
         {
-            throw new NotImplementedException();
+            return _aboutUsRepository.GetById(id);
         }
 
         public List<AboutUs> TGetList()
         {
-            throw new NotImplementedException();
+            return _aboutUsRepository.GetList();
         }
 
         public void TInsert(AboutUs t)

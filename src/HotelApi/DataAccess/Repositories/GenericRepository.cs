@@ -20,12 +20,24 @@ namespace HotelApi.DataAccess.Repositories
 
         public T GetById(int id)
         {
-            throw new NotImplementedException();
+            using IDbConnection dbConnection = new SqlConnection(connectionString);
+            dbConnection.Open();
+
+            string query = "SELECT * FROM " + GetTableName() + " WHERE " + typeof(T).Name + "Id = " + id; //Assuming that id name rules are EntityName+Id (example: RoomId)
+
+            T queryObj = dbConnection.QueryFirstOrDefault<T>(query);
+            return queryObj;
         }
 
         public List<T> GetList()
         {
-            throw new NotImplementedException();
+            using IDbConnection dbConnection = new SqlConnection(connectionString);
+            dbConnection.Open();
+
+            string query = "SELECT * FROM " + GetTableName();
+
+            List<T> queryList = dbConnection.Query<T>(query).ToList();
+            return queryList;
         }
 
         public void Insert(T entity)
@@ -33,10 +45,10 @@ namespace HotelApi.DataAccess.Repositories
             using IDbConnection dbConnection = new SqlConnection(connectionString);
             dbConnection.Open();
 
-            string insertQuery = "INSERT INTO " + GetTableName() + " (" + GetColumnNames() + " )" +
+            string query = "INSERT INTO " + GetTableName() + " (" + GetColumnNames() + " )" +
                                  "VALUES (" + GetParameterValues(entity) + " )";
 
-            dbConnection.Execute(insertQuery);
+            dbConnection.Execute(query);
         }
 
         public void Update(T t)
@@ -130,17 +142,8 @@ namespace HotelApi.DataAccess.Repositories
 
         private bool ScanPropertyId(string text)
         {
-            char[] extractedSuffix = new char[text.Length];
-            string suffixText = new string(extractedSuffix);
-
-            if (suffixText.ToLower() == "id")
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return text.ToLower() == typeof(T).Name.ToLower()+"id";
         }
+
     }
 }

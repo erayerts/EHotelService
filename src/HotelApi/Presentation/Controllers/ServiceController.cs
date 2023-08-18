@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace HotelApi.Presentation.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     public class ServiceController : ControllerBase
     {
         private readonly ServiceManager _serviceManager;
@@ -18,6 +18,23 @@ namespace HotelApi.Presentation.Controllers
         {
             _serviceManager = serviceManager;
         }
+
+        [HttpGet("get/{id}")]
+        public IActionResult GetById(int id)
+        {
+            Service resultObj = _serviceManager.TGetById(id);
+
+            return Ok(resultObj);
+        }
+
+        [HttpGet("getlist")]
+        public IActionResult GetList()
+        {
+            List<Service> resultList = _serviceManager.TGetList();
+
+            return Ok(resultList);
+        }
+
 
         [HttpPost]
         public IActionResult Post([FromBody] Service service)

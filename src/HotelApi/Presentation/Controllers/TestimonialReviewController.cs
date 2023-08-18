@@ -9,7 +9,7 @@ using HotelApi.BusinessLogic.Concrete;
 namespace HotelApi.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     public class TestimonialReviewController : ControllerBase
     {
         private readonly TestimonialReviewManager _testimonialReviewManager;
@@ -17,6 +17,22 @@ namespace HotelApi.Controllers
         public TestimonialReviewController(TestimonialReviewManager testimonialReviewManager)
         {
             _testimonialReviewManager = testimonialReviewManager;
+        }
+
+        [HttpGet("get/{id}")]
+        public IActionResult GetById(int id)
+        {
+            TestimonialReview resultObj = _testimonialReviewManager.TGetById(id);
+
+            return Ok(resultObj);
+        }
+
+        [HttpGet("getlist")]
+        public IActionResult GetList()
+        {
+            List<TestimonialReview> resultList = _testimonialReviewManager.TGetList();
+
+            return Ok(resultList);
         }
 
         [HttpPost]

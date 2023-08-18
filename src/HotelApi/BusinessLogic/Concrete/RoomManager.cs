@@ -24,12 +24,12 @@ namespace HotelApi.BusinessLogic.Concrete
 
         public Room TGetById(int id)
         {
-            throw new NotImplementedException();
+            return _roomRepository.GetById(id);
         }
 
         public List<Room> TGetList()
         {
-            throw new NotImplementedException();
+            return _roomRepository.GetList();
         }
 
         public void TInsert(Room t)

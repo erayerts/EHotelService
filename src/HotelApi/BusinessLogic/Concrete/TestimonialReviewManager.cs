@@ -24,12 +24,12 @@ namespace HotelApi.BusinessLogic.Concrete
 
         public TestimonialReview TGetById(int id)
         {
-            throw new NotImplementedException();
+            return _testimonialReviewRepository.GetById(id);
         }
 
         public List<TestimonialReview> TGetList()
         {
-            throw new NotImplementedException();
+            return _testimonialReviewRepository.GetList();
         }
 
         public void TInsert(TestimonialReview t)

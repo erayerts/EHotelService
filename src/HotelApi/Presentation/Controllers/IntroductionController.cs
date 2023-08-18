@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HotelApi.Presentation.Controllers{
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     public class IntroductionController : ControllerBase
     {
         private readonly IntroductionManager _introductionManager;
@@ -16,6 +16,22 @@ namespace HotelApi.Presentation.Controllers{
         public IntroductionController(IntroductionManager introductionManager)
         {
             _introductionManager = introductionManager;
+        }
+
+        [HttpGet("get/{id}")]
+        public IActionResult GetById(int id)
+        {
+            Introduction resultObj = _introductionManager.TGetById(id);
+
+            return Ok(resultObj);
+        }
+
+        [HttpGet("getlist")]
+        public IActionResult GetList()
+        {
+            List<Introduction> resultList = _introductionManager.TGetList();
+
+            return Ok(resultList);
         }
 
         [HttpPost]

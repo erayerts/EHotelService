@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace HotelApi.Presentation.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/v1/[controller]")]
     public class RoomController : ControllerBase
     {
         private readonly RoomManager _roomManager;
@@ -17,6 +17,22 @@ namespace HotelApi.Presentation.Controllers
         public RoomController(RoomManager roomManager)
         {
             _roomManager = roomManager;
+        }
+
+        [HttpGet("get/{id}")]
+        public IActionResult GetById(int id)
+        {
+            Room resultObj = _roomManager.TGetById(id);
+
+            return Ok(resultObj);
+        }
+
+        [HttpGet("getlist")]
+        public IActionResult GetList()
+        {
+            List<Room> resultList = _roomManager.TGetList();
+
+            return Ok(resultList);
         }
 
         [HttpPost]

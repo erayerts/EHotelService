@@ -7,6 +7,7 @@ namespace HotelApi.Shared.Entities
 {
     public class AboutUs
     {
+        public int AboutUsId { get; set; }
         public string? Title { get; set; }
         public string? Description { get; set; }
         public string? ReadNowLink { get; set; }
