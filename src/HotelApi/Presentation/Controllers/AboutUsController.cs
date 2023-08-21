@@ -36,7 +36,7 @@ namespace HotelApi.Presentation.Controllers
             return Ok(resultList);
         }
 
-        [HttpPost]
+        [HttpPost("insert")]
         public IActionResult Post([FromBody] AboutUs aboutUs)
         {
             if (aboutUs == null)
@@ -45,6 +45,26 @@ namespace HotelApi.Presentation.Controllers
             }
 
             _aboutUsManager.TInsert(aboutUs);
+            return Ok(aboutUs);
+        }
+
+        [HttpPut("update")]
+        public IActionResult Update([FromBody] AboutUs aboutUs)
+        {
+            if (aboutUs == null)
+            {
+                return BadRequest("Body cannot get null value.");
+            }
+
+            _aboutUsManager.TUpdate(aboutUs);
+            return Ok(aboutUs);
+        }
+
+        [HttpDelete("delete/{id}")]
+        public IActionResult Delete(int id)
+        {
+            _aboutUsManager.TDelete(id);
+
             return Ok();
         }
     }

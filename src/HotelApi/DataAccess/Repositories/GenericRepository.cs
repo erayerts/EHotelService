@@ -13,9 +13,14 @@ namespace HotelApi.DataAccess.Repositories
     {
         private readonly string connectionString = "connection string goes here";
 
-        public void Delete(T t)
+        public void Delete(int id)
         {
-            throw new NotImplementedException();
+            using IDbConnection dbConnection = new SqlConnection(connectionString);
+            dbConnection.Open();
+
+            string query = $"DELETE FROM {GetTableName()} WHERE {typeof(T).Name+"Id"} = {id}";
+
+            dbConnection.Execute(query);
         }
 
         public T GetById(int id)
@@ -51,9 +56,37 @@ namespace HotelApi.DataAccess.Repositories
             dbConnection.Execute(query);
         }
 
-        public void Update(T t)
+        public void Update(T entity)
         {
-            throw new NotImplementedException();
+            using IDbConnection dbConnection = new SqlConnection(connectionString);
+            dbConnection.Open();
+
+            var properties = typeof(T).GetProperties();
+            var columnValuePairs = new List<string>();
+
+            foreach (var prop in properties)
+            {
+                if (!(ScanPropertyId(prop.Name))) // Exclude the 'Id' property for update operations.
+                {
+                    var value = prop.GetValue(entity);
+                    var formattedValue = FormatPropertyValue(value);
+                    columnValuePairs.Add($"{prop.Name} = {formattedValue}");
+                }
+            }
+
+            string idColumnName = typeof(T).Name + "Id";
+            var idProperty = properties.FirstOrDefault(prop => prop.Name.Equals(idColumnName, StringComparison.OrdinalIgnoreCase));
+            if (idProperty == null)
+            {
+                throw new Exception($"No property found for ID column '{idColumnName}'.");
+            }
+
+            var idValue = idProperty.GetValue(entity);
+            var formattedIdValue = FormatPropertyValue(idValue);
+
+            string query = $"UPDATE {GetTableName()} SET {string.Join(", ", columnValuePairs)} WHERE {idColumnName} = {formattedIdValue}";
+
+            dbConnection.Execute(query);
         }
 
         private string GetTableName()
@@ -142,7 +175,7 @@ namespace HotelApi.DataAccess.Repositories
 
         private bool ScanPropertyId(string text)
         {
-            return text.ToLower() == typeof(T).Name.ToLower()+"id";
+            return text.ToLower() == typeof(T).Name.ToLower() + "id";
         }
 
     }

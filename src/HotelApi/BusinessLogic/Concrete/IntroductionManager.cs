@@ -16,9 +16,9 @@ namespace HotelApi.BusinessLogic.Concrete
         {
             _introductionRepository = new GenericRepository<Introduction>();
         }
-        public void TDelete(Introduction t)
+        public void TDelete(int id)
         {
-            throw new NotImplementedException();
+            _introductionRepository.Delete(id);
         }
 
         public Introduction TGetById(int id)
@@ -38,7 +38,7 @@ namespace HotelApi.BusinessLogic.Concrete
 
         public void TUpdate(Introduction t)
         {
-            throw new NotImplementedException();
+            _introductionRepository.Update(t);
         }
     }
 }

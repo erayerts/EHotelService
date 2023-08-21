@@ -35,7 +35,7 @@ namespace HotelApi.Presentation.Controllers
             return Ok(resultList);
         }
 
-        [HttpPost]
+        [HttpPost("insert")]
         public IActionResult Post([FromBody] NewsPost newsPost)
         {
             if (newsPost == null)
@@ -44,6 +44,26 @@ namespace HotelApi.Presentation.Controllers
             }
 
             _newsPostManager.TInsert(newsPost);
+            return Ok();
+        }
+
+        [HttpPut("update")]
+        public IActionResult Update([FromBody] NewsPost newsPost)
+        {
+            if (newsPost == null)
+            {
+                return BadRequest("Body cannot get null value.");
+            }
+
+            _newsPostManager.TUpdate(newsPost);
+            return Ok(newsPost);
+        }
+
+        [HttpDelete("delete/{id}")]
+        public IActionResult Delete(int id)
+        {
+            _newsPostManager.TDelete(id);
+
             return Ok();
         }
     }

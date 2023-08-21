@@ -35,7 +35,7 @@ namespace HotelApi.Controllers
             return Ok(resultList);
         }
 
-        [HttpPost]
+        [HttpPost("insert")]
         public IActionResult Post([FromBody] TestimonialReview testimonialReview)
         {
             if (testimonialReview == null)
@@ -44,6 +44,26 @@ namespace HotelApi.Controllers
             }
 
             _testimonialReviewManager.TInsert(testimonialReview);
+            return Ok();
+        }
+
+        [HttpPut("update")]
+        public IActionResult Update([FromBody] TestimonialReview testimonialReview)
+        {
+            if (testimonialReview == null)
+            {
+                return BadRequest("Body cannot get null value.");
+            }
+
+            _testimonialReviewManager.TUpdate(testimonialReview);
+            return Ok(testimonialReview);
+        }
+
+        [HttpDelete("delete/{id}")]
+        public IActionResult Delete(int id) 
+        {
+            _testimonialReviewManager.TDelete(id);
+            
             return Ok();
         }
     }

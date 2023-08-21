@@ -17,9 +17,9 @@ namespace HotelApi.BusinessLogic.Concrete
             _testimonialReviewRepository = new GenericRepository<TestimonialReview>();
         }
 
-        public void TDelete(TestimonialReview t)
+        public void TDelete(int id)
         {
-            throw new NotImplementedException();
+            _testimonialReviewRepository.Delete(id);
         }
 
         public TestimonialReview TGetById(int id)
@@ -39,7 +39,7 @@ namespace HotelApi.BusinessLogic.Concrete
 
         public void TUpdate(TestimonialReview t)
         {
-            throw new NotImplementedException();
+            _testimonialReviewRepository.Update(t);
         }
     }
 }

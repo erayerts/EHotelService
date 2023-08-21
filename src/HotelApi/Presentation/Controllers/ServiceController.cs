@@ -36,7 +36,7 @@ namespace HotelApi.Presentation.Controllers
         }
 
 
-        [HttpPost]
+        [HttpPost("insert")]
         public IActionResult Post([FromBody] Service service)
         {
             if (service == null)
@@ -45,6 +45,26 @@ namespace HotelApi.Presentation.Controllers
             }
 
             _serviceManager.TInsert(service);
+            return Ok();
+        }
+
+        [HttpPut("update")]
+        public IActionResult Update([FromBody] Service service)
+        {
+            if (service == null)
+            {
+                return BadRequest("Body cannot get null value.");
+            }
+
+            _serviceManager.TUpdate(service);
+            return Ok(service);
+        }
+
+        [HttpDelete("delete/{id}")]
+        public IActionResult Delete(int id)
+        {
+            _serviceManager.TDelete(id);
+
             return Ok();
         }
     }
