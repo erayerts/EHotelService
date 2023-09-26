@@ -37,6 +37,7 @@ CREATE TABLE TestimonialReviews (
     TestimonialReviewId INT PRIMARY KEY IDENTITY(1,1),
     Review TEXT,
     Author VARCHAR(100),
+    AuthorId INT,
     Rate SMALLINT
 );
 
@@ -44,6 +45,15 @@ CREATE TABLE NewsPosts (
     NewsPostId INT PRIMARY KEY IDENTITY(1,1),
     Title VARCHAR(255),
     Category VARCHAR(100),
+    CoverImage VARCHAR(255),
+    PostLink VARCHAR(255),
+    PostDate INT
+);
+
+CREATE TABLE UserAccounts (
+    UserAccountId INT PRIMARY KEY IDENTITY(1,1),
+    Username VARCHAR(255),
+    PasswordHash VARCHAR(100),
     CoverImage VARCHAR(255),
     PostLink VARCHAR(255),
     PostDate INT

@@ -5,9 +5,11 @@ using System.Threading.Tasks;
 using HotelApi.Shared.Entities;
 using Microsoft.AspNetCore.Mvc;
 using HotelApi.BusinessLogic.Concrete;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HotelApi.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/v1/[controller]")]
     public class TestimonialReviewController : ControllerBase
@@ -27,7 +29,7 @@ namespace HotelApi.Controllers
             return Ok(resultObj);
         }
 
-        [HttpGet("getlist")]
+        [HttpGet("getList")]
         public IActionResult GetList()
         {
             List<TestimonialReview> resultList = _testimonialReviewManager.TGetList();

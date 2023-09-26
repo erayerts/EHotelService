@@ -12,9 +12,9 @@ namespace HotelApi.BusinessLogic.Concrete
     {
         private readonly GenericRepository<Room> _roomRepository;
 
-        public RoomManager()
+        public RoomManager(GenericRepository<Room> roomRepository)
         {
-            _roomRepository = new GenericRepository<Room>();
+            _roomRepository = roomRepository;
         }
 
         public void TDelete(int id)

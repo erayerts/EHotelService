@@ -13,9 +13,9 @@ namespace HotelApi.BusinessLogic.Concrete
     {
         private readonly GenericRepository<AboutUs> _aboutUsRepository;
 
-        public AboutUsManager()
+        public AboutUsManager(GenericRepository<AboutUs> aboutUsRepository)
         {
-            _aboutUsRepository = new GenericRepository<AboutUs>();
+            _aboutUsRepository = aboutUsRepository;
         }
         public void TDelete(int id)
         {

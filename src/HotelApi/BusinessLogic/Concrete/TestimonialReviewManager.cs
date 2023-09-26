@@ -12,9 +12,9 @@ namespace HotelApi.BusinessLogic.Concrete
     {
         private readonly GenericRepository<TestimonialReview> _testimonialReviewRepository;
 
-        public TestimonialReviewManager()
+        public TestimonialReviewManager(GenericRepository<TestimonialReview> testimonialReviewRepository)
         {
-            _testimonialReviewRepository = new GenericRepository<TestimonialReview>();
+            _testimonialReviewRepository = testimonialReviewRepository;
         }
 
         public void TDelete(int id)

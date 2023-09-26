@@ -11,21 +11,31 @@ namespace HotelApi.DataAccess.Repositories
 {
     public class GenericRepository<T> where T : class
     {
-        private readonly string connectionString = "connection string goes here";
+        private readonly IConfiguration _config;
+
+        public GenericRepository(IConfiguration config)
+        {
+            _config = config;
+        }
+
+        private IDbConnection CreateConnection()
+        {
+            return new SqlConnection(_config.GetConnectionString("DefaultConnection"));
+        }
 
         public void Delete(int id)
         {
-            using IDbConnection dbConnection = new SqlConnection(connectionString);
+            using var dbConnection = CreateConnection();
             dbConnection.Open();
 
-            string query = $"DELETE FROM {GetTableName()} WHERE {typeof(T).Name+"Id"} = {id}";
+            string query = $"DELETE FROM {GetTableName()} WHERE {typeof(T).Name + "Id"} = {id}";
 
             dbConnection.Execute(query);
         }
 
         public T GetById(int id)
         {
-            using IDbConnection dbConnection = new SqlConnection(connectionString);
+            using var dbConnection = CreateConnection();
             dbConnection.Open();
 
             string query = "SELECT * FROM " + GetTableName() + " WHERE " + typeof(T).Name + "Id = " + id; //Assuming that id name rules are EntityName+Id (example: RoomId)
@@ -36,7 +46,7 @@ namespace HotelApi.DataAccess.Repositories
 
         public List<T> GetList()
         {
-            using IDbConnection dbConnection = new SqlConnection(connectionString);
+            using var dbConnection = CreateConnection();
             dbConnection.Open();
 
             string query = "SELECT * FROM " + GetTableName();
@@ -47,7 +57,7 @@ namespace HotelApi.DataAccess.Repositories
 
         public void Insert(T entity)
         {
-            using IDbConnection dbConnection = new SqlConnection(connectionString);
+            using var dbConnection = CreateConnection();
             dbConnection.Open();
 
             string query = "INSERT INTO " + GetTableName() + " (" + GetColumnNames() + " )" +
@@ -58,7 +68,7 @@ namespace HotelApi.DataAccess.Repositories
 
         public void Update(T entity)
         {
-            using IDbConnection dbConnection = new SqlConnection(connectionString);
+            using var dbConnection = CreateConnection();
             dbConnection.Open();
 
             var properties = typeof(T).GetProperties();

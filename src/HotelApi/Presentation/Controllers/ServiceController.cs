@@ -4,10 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using HotelApi.BusinessLogic.Concrete;
 using HotelApi.Shared.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HotelApi.Presentation.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/v1/[controller]")]
     public class ServiceController : ControllerBase
@@ -27,7 +29,7 @@ namespace HotelApi.Presentation.Controllers
             return Ok(resultObj);
         }
 
-        [HttpGet("getlist")]
+        [HttpGet("getList")]
         public IActionResult GetList()
         {
             List<Service> resultList = _serviceManager.TGetList();
